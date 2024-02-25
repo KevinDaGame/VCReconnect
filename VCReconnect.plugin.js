@@ -2,7 +2,7 @@
  * @name VCReconnect
  * @author KevDaDev
  * @description Reconnect to vc
- * @version 0.1.0
+ * @version 0.2.0
  */
 
 const defaultSettings = {
@@ -14,6 +14,7 @@ module.exports = class VCReconnect {
     settings = defaultSettings;
     intervalKey = null;
     isLocked = false;
+    rejoinCount = 0;
 
     createLockButton() {
         const buttonsPane = document.querySelector('section[aria-label="User area"]');
@@ -44,7 +45,7 @@ module.exports = class VCReconnect {
     updateLockButtonText() {
         const lockButton = document.getElementById('VCReconnectLockButton');
         if (lockButton) {
-            lockButton.innerHTML = this.isLocked ? 'Unlock VC' : 'Lock VC';
+            lockButton.innerHTML = (this.isLocked ? 'Unlock' : 'Lock') + ` VC (${this.rejoinCount} rejoin attempts)`;
             if(this.isLocked) {
                 lockButton.classList.add('buttonActive__407a7');
             }
@@ -92,6 +93,8 @@ module.exports = class VCReconnect {
             }
             BdApi.showToast('Reconnecting to vc', {type: 'info'});
             vc.click();
+            this.rejoinCount++;
+            this.updateLockButtonText();
         }, this.settings.reconnectCheckInterval);
     }
 
