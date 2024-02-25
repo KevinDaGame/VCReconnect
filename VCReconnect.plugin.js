@@ -13,7 +13,11 @@ module.exports = class VCReconnect {
 
     createLockButton() {
         const buttonsPane = document.querySelector('section[aria-label="User area"]');
+        const lockButtonContainer = document.createElement('div');
         const lockButton = document.createElement('button');
+
+        lockButtonContainer.classList.add('container_d667ff', 'actionButtons_b58cbb');
+        lockButtonContainer.id = 'VCReconnectLockButtonContainer';
 
         lockButton.id = 'VCReconnectLockButton';
         lockButton.classList.add('button__66e8c', 'buttonColor_a6eb73', 'button_afdfd9', 'colorBrand_b2253e', 'sizeSmall__71a98', 'grow__4c8a4', 'button__66e8c');
@@ -26,7 +30,9 @@ module.exports = class VCReconnect {
             }
             this.updateLockButtonText();
         }
-        buttonsPane.insertBefore(lockButton, buttonsPane.lastChild);
+
+        lockButtonContainer.appendChild(lockButton);
+        buttonsPane.insertBefore(lockButtonContainer, buttonsPane.lastChild);
 
     }
 
@@ -47,7 +53,7 @@ module.exports = class VCReconnect {
         const vc = document.querySelector(`[data-list-item-id="channels___${this.channelId}"]`);
 
         if (!vc) {
-            BdApi.showToast('VC not found', {type: 'error'});
+            BdApi.showToast('VC not found. Make sure you are in the correct server', {type: 'error'});
             return;
         }
 
@@ -92,7 +98,7 @@ module.exports = class VCReconnect {
     stop() {
         clearInterval(this.intervalKey);
         //remove lock button from ui
-        const lockButton = document.getElementById('VCReconnectLockButton');
+        const lockButton = document.getElementById('VCReconnectLockButtonContainer');
         if (lockButton) {
             lockButton.remove();
         }
