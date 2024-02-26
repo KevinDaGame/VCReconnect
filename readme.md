@@ -1,5 +1,5 @@
 # VCReconnect
-## Never wake up without your significant other again
+## Never wake up alone again
 
 VCReconnect is a simple plugin for BetterDiscord that allows you to automatically reconnect to a voice channel when you get disconnected.
 It adds a lock vc button to your user panel that when locked will automatically reconnect you to the voice channel you specify in the settings.
