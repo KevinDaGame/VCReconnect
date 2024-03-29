@@ -21,12 +21,12 @@ module.exports = class VCReconnect {
         const lockButtonContainer = document.createElement('div');
         const lockButton = document.createElement('button');
 
-        lockButtonContainer.classList.add('container_d667ff', 'actionButtons_b58cbb');
+        lockButtonContainer.classList.add('container_e1958d', 'actionButtons__85e3c');
         lockButtonContainer.style = 'padding-top: 8px';
         lockButtonContainer.id = 'VCReconnectLockButtonContainer';
 
         lockButton.id = 'VCReconnectLockButton';
-        lockButton.classList.add('button__66e8c', 'buttonColor_a6eb73', 'button_afdfd9', 'colorBrand_b2253e', 'sizeSmall__71a98', 'grow__4c8a4', 'button__66e8c');
+        lockButton.classList.add('button__581d0', 'buttonColor__7bad9', 'button_b82d53', 'colorBrand__27d57', 'sizeSmall_da7d10', 'grow__4c8a4', 'button_b82d53');
         lockButton.onclick = () => {
             if (this.isLocked) {
                 this.unlockVc();
@@ -47,10 +47,10 @@ module.exports = class VCReconnect {
         if (lockButton) {
             lockButton.innerHTML = (this.isLocked ? 'Unlock' : 'Lock') + ` VC (${this.rejoinCount} rejoin attempts)`;
             if(this.isLocked) {
-                lockButton.classList.add('buttonActive__407a7');
+                lockButton.classList.add('buttonActive_ae686f');
             }
             else {
-                lockButton.classList.remove('buttonActive__407a7');
+                lockButton.classList.remove('buttonActive_ae686f');
             }
         }
     }
@@ -85,7 +85,7 @@ module.exports = class VCReconnect {
             const members = vc.closest('li').querySelector(`div[role="group"]`).children;
 
             for (let i = 0; i < members.length; i++) {
-                const username = members[i].querySelector('div.usernameFont__71dd5.username__73ce9');
+                const username = members[i].querySelector('div[class^="username"]');
                 if (username.innerHTML === this.settings.userName) {
                     console.log('User is in vc');
                     return;
